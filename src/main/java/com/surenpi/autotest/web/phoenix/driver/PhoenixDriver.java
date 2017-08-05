@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.surenpi.autotest.web.phoenixdriver;
+package com.surenpi.autotest.web.phoenix.driver;
 
 import java.util.List;
 
