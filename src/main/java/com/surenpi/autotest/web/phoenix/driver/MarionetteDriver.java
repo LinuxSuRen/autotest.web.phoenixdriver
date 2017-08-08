@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.suren.autotest.web.phoenix.driver.MarionetteRequest;
-
 import com.surenpi.autotest.webui.ui.Element;
 
 /**
@@ -95,6 +93,7 @@ public class MarionetteDriver implements PhoenixDriver
     public String getUrl()
     {
         String cmd = request.value(driverCmd.getCurrentUrl());
+        int index = request.getIndex();
         
         executor.execute(cmd);
         

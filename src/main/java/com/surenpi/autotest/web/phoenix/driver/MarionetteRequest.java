@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.suren.autotest.web.phoenix.driver;
+package com.surenpi.autotest.web.phoenix.driver;
 
 import java.util.Map;
 
@@ -96,5 +96,13 @@ public class MarionetteRequest
         });
         
         return value(cmd, jsonParam);
+    }
+
+    /**
+     * @return the index
+     */
+    public int getIndex()
+    {
+        return index;
     }
 }
