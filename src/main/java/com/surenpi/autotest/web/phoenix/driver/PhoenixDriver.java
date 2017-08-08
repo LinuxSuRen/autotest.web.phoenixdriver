@@ -28,6 +28,12 @@ import com.surenpi.autotest.webui.ui.Element;
 public interface PhoenixDriver
 {
     /**
+     * 新建会话
+     * @return 会话
+     */
+    PhoenixSession newSession();
+    
+    /**
      * 打开地址.
      * @param url 页面地址
      * @return 驱动接口

@@ -1,53 +1,104 @@
 package com.surenpi.autotest.web.phoenix.driver;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.suren.autotest.web.phoenix.driver.MarionetteRequest;
 
 import com.surenpi.autotest.webui.ui.Element;
 
+/**
+ * @author suren
+ * @since 2017年8月8日 上午11:14:13
+ */
 public class MarionetteDriver implements PhoenixDriver
 {
+    private MarionetteRequest request;
+    private DriverCmd driverCmd = new MarionetteCmd();
+    private AsyncCmdExecutor executor;
+    
+    public MarionetteDriver() throws IOException
+    {
+        executor = new MarionetteExecutor("localhost");
+        request = new MarionetteRequest();
+    }
+
+    @Override
+    public PhoenixSession newSession()
+    {
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("sessionId", null);
+        param.put("capabilities", null);
+        
+        String cmd = request.valueWithMap(driverCmd.newSession(),
+                param);
+        
+        executor.execute(cmd);
+        
+        return null;
+    }
 
     @Override
     public PhoenixDriver open(String url)
     {
-        // TODO Auto-generated method stub
-        // newSession
-        return null;
+        String cmd = request.value(driverCmd.navi(),
+                "url", url);
+        
+        executor.execute(cmd);
+        
+        return this;
     }
 
     @Override
     public PhoenixDriver refresh()
     {
-        // TODO Auto-generated method stub
-        return null;
+        String cmd = request.value(driverCmd.refresh());
+        
+        executor.execute(cmd);
+        
+        return this;
     }
 
     @Override
     public PhoenixDriver forward()
     {
-        // TODO Auto-generated method stub
-        return null;
+        String cmd = request.value(driverCmd.goForward());
+        
+        executor.execute(cmd);
+        
+        return this;
     }
 
     @Override
     public PhoenixDriver back()
     {
-        // TODO Auto-generated method stub
-        return null;
+        String cmd = request.value(driverCmd.goBack());
+        
+        executor.execute(cmd);
+        
+        return this;
     }
 
     @Override
     public String getTitle()
     {
-        // TODO Auto-generated method stub
-        return null;
+        String cmd = request.value(driverCmd.getTitle());
+        
+        executor.execute(cmd);
+        
+        return executor.getResponse();
     }
 
     @Override
     public String getUrl()
     {
-        // TODO Auto-generated method stub
-        return null;
+        String cmd = request.value(driverCmd.getCurrentUrl());
+        
+        executor.execute(cmd);
+        
+        return executor.getResponse();
     }
 
     @Override

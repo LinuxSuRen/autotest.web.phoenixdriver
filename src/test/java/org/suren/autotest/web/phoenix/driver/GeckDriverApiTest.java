@@ -26,16 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.ParseException;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.suren.autotest.interfaces.framework.SimpleHttpClient;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import net.sf.json.JSONArray;
@@ -44,7 +40,7 @@ import net.sf.json.JSONObject;
 
 /**
  * @author suren
- * @date 2017年8月1日 下午3:29:55
+ * @since 2017年8月1日 下午3:29:55
  */
 //@Ignore
 public class GeckDriverApiTest
@@ -55,6 +51,10 @@ public class GeckDriverApiTest
     
     private static int num = 1;
     
+    /**
+     * @throws ParseException 得到
+     * @throws IOException 得到
+     */
     @BeforeClass
     public static void newSession() throws ParseException, IOException
     {
@@ -66,6 +66,11 @@ public class GeckDriverApiTest
         in = socket.getInputStream();
     }
     
+    /**
+     * @throws ParseException d
+     * @throws IOException d 
+     * @throws InterruptedException 的
+     */
     @Test
     public void test() throws ParseException, IOException, InterruptedException
     {
@@ -134,7 +139,7 @@ public class GeckDriverApiTest
         return true;
     }
     
-    public void open(String url) throws IOException
+    private void open(String url) throws IOException
     {
         JSONObject param = new JSONObject();
         param.put("url", url);
@@ -157,7 +162,7 @@ public class GeckDriverApiTest
 //        out.write(toMsg(array.toString()));
     }
     
-    public void getCurrentUrl() throws IOException
+    private void getCurrentUrl() throws IOException
     {
         JSONArray array = new JSONArray();
         array.add(0);
@@ -172,7 +177,7 @@ public class GeckDriverApiTest
         refresh();
     }
     
-    public void refresh() throws IOException
+    private void refresh() throws IOException
     {
         JSONArray array = new JSONArray();
         array.add(0);
@@ -187,7 +192,7 @@ public class GeckDriverApiTest
         goBack();
     }
     
-    public void goBack() throws IOException
+    private void goBack() throws IOException
     {
         JSONArray array = new JSONArray();
         array.add(0);
@@ -211,7 +216,7 @@ public class GeckDriverApiTest
         goForward();
     }
     
-    public void goForward() throws IOException
+    private void goForward() throws IOException
     {
         JSONArray array = new JSONArray();
         array.add(0);
@@ -235,7 +240,7 @@ public class GeckDriverApiTest
         findElement();
     }
     
-    public void findElement() throws IOException
+    private void findElement() throws IOException
     {
         JSONObject param = new JSONObject();
         param.put("using", "name");
@@ -305,7 +310,7 @@ public class GeckDriverApiTest
         return jsonEleList;
     }
     
-    public void findAttribute(String eleId) throws IOException
+    private void findAttribute(String eleId) throws IOException
     {
         JSONObject param = new JSONObject();
         param.put("id", eleId);
@@ -323,6 +328,10 @@ public class GeckDriverApiTest
         readResponse(in);
     }
     
+    /**
+     * @throws ParseException 得到
+     * @throws IOException 得到
+     */
     @AfterClass
     public static void close() throws ParseException, IOException
     {

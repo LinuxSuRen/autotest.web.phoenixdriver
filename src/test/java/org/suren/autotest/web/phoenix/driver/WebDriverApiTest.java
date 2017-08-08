@@ -33,7 +33,7 @@ import net.sf.json.JSONObject;
 
 /**
  * @author suren
- * @date 2017年8月1日 下午3:29:55
+ * @since 2017年8月1日 下午3:29:55
  */
 //@Ignore
 public class WebDriverApiTest
@@ -41,6 +41,10 @@ public class WebDriverApiTest
     private static SimpleHttpClient client;
     private static String sessionId;
     
+    /**
+     * @throws ParseException 1
+     * @throws IOException 1
+     */
     @BeforeClass
     public static void newSession() throws ParseException, IOException
     {
@@ -80,6 +84,10 @@ public class WebDriverApiTest
         System.out.println(res);
     }
     
+    /**
+     * @throws ParseException 1
+     * @throws IOException 1
+     */
     @Test
     public void getTitle() throws ParseException, IOException
     {
@@ -87,6 +95,10 @@ public class WebDriverApiTest
         System.out.println("get title : " + res);
     }
     
+    /**
+     * @throws ParseException 1
+     * @throws IOException 1
+     */
     @Test
     public void getUrl() throws ParseException, IOException
     {
@@ -94,6 +106,10 @@ public class WebDriverApiTest
         System.out.println("get current url : " + res);
     }
     
+    /**
+     * @throws ParseException 1
+     * @throws IOException 1
+     */
     @Test
     public void findElement() throws ParseException, IOException
     {
@@ -144,6 +160,10 @@ public class WebDriverApiTest
         System.out.println("elementEnabled: " + res);
     }
     
+    /**
+     * @throws ParseException 1
+     * @throws IOException 1
+     */
     @Test
     public void getAllCookie() throws ParseException, IOException
     {
@@ -151,6 +171,10 @@ public class WebDriverApiTest
         System.out.println("getAllCookie: " + res);
     }
     
+    /**
+     * @throws ParseException 1
+     * @throws IOException 1
+     */
     @Test
     public void status() throws ParseException, IOException
     {
@@ -158,6 +182,10 @@ public class WebDriverApiTest
         System.out.println("status: " + res);
     }
     
+    /**
+     * @throws ParseException 1
+     * @throws IOException 1
+     */
     @AfterClass
     public static void close() throws ParseException, IOException
     {

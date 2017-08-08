@@ -13,6 +13,10 @@ public interface DriverCmd
      */
     String newSession();
     
+    /**
+     * 地址导航
+     * @return 地址导航
+     */
     String navi();
     
     /**
@@ -27,13 +31,39 @@ public interface DriverCmd
      */
     String getTitle();
     
+    /**
+     * 刷新页面.
+     * @return 刷新页面
+     */
     String refresh();
     
+    /**
+     * 回退.
+     * @return 回退
+     */
     String goBack();
     
+    /**
+     * 前进.
+     * @return 前进
+     */
     String goForward();
     
+    /**
+     * 查找单个元素.
+     * @return 查找单个元素
+     */
     String findElement();
     
+    /**
+     * 查找多个元素.
+     * @return 查找多个元素
+     */
+    String findElements();
+    
+    /**
+     * 获取元素属性.
+     * @return 获取元素属性
+     */
     String getElementAttribute();
 }
