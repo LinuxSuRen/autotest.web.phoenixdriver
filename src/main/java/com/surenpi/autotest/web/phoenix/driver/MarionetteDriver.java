@@ -15,7 +15,7 @@ public class MarionetteDriver implements PhoenixDriver
 {
     private MarionetteRequest request;
     private DriverCmd driverCmd = new MarionetteCmd();
-    private AsyncCmdExecutor executor;
+    private MarionetteExecutor executor;
     
     public MarionetteDriver() throws IOException
     {
@@ -33,7 +33,9 @@ public class MarionetteDriver implements PhoenixDriver
         String cmd = request.valueWithMap(driverCmd.newSession(),
                 param);
         
-        executor.execute(cmd);
+        executor.execute(cmd, null);
+        
+        System.out.println(executor.getResponse());
         
         return null;
     }
@@ -44,7 +46,7 @@ public class MarionetteDriver implements PhoenixDriver
         String cmd = request.value(driverCmd.navi(),
                 "url", url);
         
-        executor.execute(cmd);
+        executor.execute(cmd, null);
         
         return this;
     }
@@ -54,7 +56,7 @@ public class MarionetteDriver implements PhoenixDriver
     {
         String cmd = request.value(driverCmd.refresh());
         
-        executor.execute(cmd);
+        executor.execute(cmd, null);
         
         return this;
     }
@@ -64,7 +66,7 @@ public class MarionetteDriver implements PhoenixDriver
     {
         String cmd = request.value(driverCmd.goForward());
         
-        executor.execute(cmd);
+        executor.execute(cmd, null);
         
         return this;
     }
@@ -74,7 +76,7 @@ public class MarionetteDriver implements PhoenixDriver
     {
         String cmd = request.value(driverCmd.goBack());
         
-        executor.execute(cmd);
+        executor.execute(cmd, null);
         
         return this;
     }
@@ -84,7 +86,7 @@ public class MarionetteDriver implements PhoenixDriver
     {
         String cmd = request.value(driverCmd.getTitle());
         
-        executor.execute(cmd);
+        executor.execute(cmd, null);
         
         return executor.getResponse();
     }
@@ -95,9 +97,9 @@ public class MarionetteDriver implements PhoenixDriver
         String cmd = request.value(driverCmd.getCurrentUrl());
         int index = request.getIndex();
         
-        executor.execute(cmd);
+        executor.execute(cmd, null);
         
-        return executor.getResponse();
+        return executor.getResponse(index);
     }
 
     @Override

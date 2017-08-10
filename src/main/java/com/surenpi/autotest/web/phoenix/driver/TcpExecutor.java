@@ -50,7 +50,7 @@ public class TcpExecutor implements AsyncCmdExecutor
     }
 
     @Override
-    public String execute(String cmd)
+    public String execute(String cmd, String data)
     {
         try
         {

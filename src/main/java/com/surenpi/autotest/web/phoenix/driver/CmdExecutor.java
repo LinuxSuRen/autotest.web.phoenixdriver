@@ -19,14 +19,16 @@ package com.surenpi.autotest.web.phoenix.driver;
 /**
  * 命令执行器接口.
  * @author suren
+ * @param <T>
  * @since 2017年8月8日 上午10:54:40
  */
-public interface CmdExecutor
+public interface CmdExecutor<T>
 {
     /**
      * 执行命令.
      * @param cmd 命令
+     * @param data data
      * @return 执行结果
      */
-    String execute(String cmd);
+    String execute(String cmd, T data);
 }

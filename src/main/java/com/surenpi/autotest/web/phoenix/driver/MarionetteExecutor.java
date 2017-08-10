@@ -17,6 +17,12 @@
 package com.surenpi.autotest.web.phoenix.driver;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 /**
  * @author suren
@@ -35,12 +41,74 @@ public class MarionetteExecutor extends TcpExecutor
     }
 
     @Override
-    public String execute(String cmd)
+    public String execute(String cmd, String data)
     {
         String payload = String.format("%d:%s",
                 cmd.length(), cmd);
         
-        return super.execute(payload);
+        return super.execute(payload, data);
+    }
+    
+    /**
+     * @param index 请求序号
+     * @return 响应
+     */
+    public String getResponse(int index)
+    {
+        List<JsonElement> jsonEleList = getJsonResponse();
+        if(jsonEleList == null)
+        {
+            return null;
+        }
+        
+        for(JsonElement ele : jsonEleList)
+        {
+            if(!(ele instanceof JsonArray))
+            {
+                continue;
+            }
+            
+            if(index == ((JsonArray)ele).get(1).getAsInt())
+            {
+                return ele.toString();
+            }
+        }
+        
+        return null;
+    }
+    
+    private List<JsonElement> getJsonResponse()
+    {
+        String response = getResponse();
+        
+        List<JsonElement> jsonEleList = new ArrayList<JsonElement>();
+        int jsonIndex = 0;
+        
+        while(true)
+        {
+            int headIndex = response.indexOf(":", jsonIndex);
+            if(headIndex != -1)
+            {
+                String head = response.substring(jsonIndex, headIndex);
+                int headLen = head.length() + 1;
+                int dataLen = Integer.parseInt(head);
+                
+                String json = response.substring(jsonIndex + headLen, jsonIndex + headLen + dataLen);
+                
+                jsonIndex += headLen + dataLen;
+                
+                JsonParser jsonParser = new JsonParser();
+                JsonElement jsonObject = jsonParser.parse(json);
+                
+                jsonEleList.add(jsonObject);
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        return jsonEleList;
     }
 
     @Override
@@ -49,7 +117,7 @@ public class MarionetteExecutor extends TcpExecutor
         StringBuffer dataBuf = new StringBuffer();
         
         int len = -1;
-        byte[] buf = new byte[1024];
+        byte[] buf = new byte[10240];
         
         try
         {

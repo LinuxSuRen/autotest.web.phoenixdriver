@@ -20,7 +20,7 @@ package com.surenpi.autotest.web.phoenix.driver;
  * @author suren
  * @since 2017年8月8日 上午11:10:57
  */
-public interface AsyncCmdExecutor extends CmdExecutor
+public interface AsyncCmdExecutor extends CmdExecutor<String>
 {
     /**
      * @return 响应

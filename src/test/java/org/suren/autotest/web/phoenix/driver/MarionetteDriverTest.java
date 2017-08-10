@@ -38,6 +38,8 @@ public class MarionetteDriverTest
         
         driver.newSession();
         
-        driver.open("http://surenpi.com");
+        driver.open("http://surenpi.com?s=123");
+        
+        System.out.println(driver.getUrl());
     }
 }
